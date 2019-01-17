@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Health Use Case Hyperledger</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body class="bg-light">
+
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <a class="navbar-brand" href="/home">Electronic Health Records on Blockchain</a>
+  </nav>
+
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Patient Registration</h1>
+      <p id="registration-info" style="display:block;">Register as patient on the blockchain network.</p>
+    </div>
+  </div>
+
+
+  <div class="container" id="registration" style="display:block;">
+
+    <div class="col-md-6 order-md-1">
+      <div class="mb-3">
+        <label for="patient-id"><b>Patient Blockchain ID </b><span class="text-muted"> (identification on the blockchain network)</span></label>
+        <div class="input-group patient-id">
+          <input type="text" class="form-control" id="patient-id" placeholder="" required>
+          <div class="invalid-feedback" style="width: 100%;">
+            ID is required.
+          </div>
+        </div>
+        <small class="text-muted">Numbers Only.Minimum six digits</small>
+      </div>
+
+      <div class="mb-3">
+        <label for="card-id"><b>Patient Username </b><span class="text-muted"> (username for your account)</span></label>
+        <div class="input-group card-id">
+          <input type="text" class="form-control" id="card-id" placeholder="" required>
+          <div class="invalid-feedback" style="width: 100%;">
+            username is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3 first-name">
+          <label for="firstName"><b>First name</b></label>
+          <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+          <div class="invalid-feedback">
+            Valid first name is required.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3 last-name">
+          <label for="lastName"><b>Last name</b></label>
+          <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+          <div class="invalid-feedback">
+            Valid last name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 mb-3 email">
+          <label for="email"><b>Email</b></label>
+          <input type="text" class="form-control" id="email" placeholder="you@example.com" value="" required>
+          <div class="invalid-feedback">
+            Please enter a valid email address.
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6 mb-3 dob">
+          <label for="dob"><b>Date of Birth</b></label>
+          <input type="text" class="form-control" id="dob" placeholder="dd-mm-yyyy" value="" required>
+          <div class="invalid-feedback">
+            Please enter your date of birth.
+          </div>
+        </div>
+      
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3 phone-number">
+          <label for="phone-number"><b>Phone Number</b></label>
+          <input type="text" class="form-control" id="phone-number" placeholder="xxx-xxx-xxxx" value="" required>
+          <div class="invalid-feedback">
+            Please enter your phone number.
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 mb-3 address-patient">
+          <label for="address-patient"><b>Address,City,Zip</b></label>
+          <input type="text" class="form-control" id="address-patient"  value="" required>
+          <div class="invalid-feedback">
+            Please enter your Address.
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block register-patient" onclick="showInput();" type="submit">Register and Verify on Blockchain Network</button>
+      </div>
+
+    </div>
+    <hr class="featurette-divider">
+  </div>
+
+  <div class="container text-center">
+    <div class="loader" id="loader" style="display:none;"></div>
+  </div>
+
+  <div class="container text-center" id="successful-registration" style="display:none;">
+    <h4>Patient Successfully registered on the Blockchain Network</h4>
+    <div class="row" style="display:block;">
+      <br>
+      <div><a class="btn btn-primary" href="/patient" role="button">Patient Sign In &raquo;</a></div>
+      <br>
+      <div><a class="btn btn-primary" href="/home" role="button">Home &raquo;</a></div>
+    </div>
+    <hr class="featurette-divider">
+  </div>
+
+
+
+
+</body>
+
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="/scripts/register.js"></script>

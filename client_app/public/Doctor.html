@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Electronic Health Record</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body class="bg-light">
+
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/home">Electronic Health Record</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+
+      </ul>
+
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">About</a>
+        </li>
+
+        <li class="nav-item text-nowrap dropdown">
+          <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign-in</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="/doctor">Doctor</a>
+            <a class="dropdown-item" href="/doctor">Doctor</a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <div class="jumbotron" id="loginSection" style="display:block;">
+    <div class="container">
+      <h2>Doctor Sign In</h2>
+      <br>
+      <div class="doctor-id">
+        <p> Enter Doctor ID
+          <input>
+        </p>
+      </div>
+      <div class="card-id">
+        <p> Enter Access Card ID
+          <input>
+        </p>
+      </div>
+      <button class="btn btn-primary sign-in-doctor">SIGN IN</button>
+    </div>
+  </div>
+
+
+  <div id="transactionSection" style="display:none;">
+
+
+    <div class="jumbotron" id="headSection" style="display:block;">
+      <div class="container">
+        <table>
+          <tr>
+            <td>
+              <div style="padding-right: 20px">
+                <h2>Name:</h2>
+                <h2>DoctorId:</h2>
+              </div>
+            </td>
+            <td>
+              <div class="heading"> </div>
+            </td>
+          </tr>
+        </table>
+        <!--div class="heading"> </div-->
+      </div>
+    </div>
+
+    <div class="container" >
+
+      <div class="row">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item tab-width">
+            <a class="nav-link active" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" aria-controls="earn" aria-selected="true">Dashboard</a>
+          </li>
+          <li class="nav-item tab-width">
+            <a class="nav-link " id="healthRecord-tab" data-toggle="tab" href="#healthRecord" role="tab" aria-controls="healthRecord" aria-selected="false">Health Record</a>
+          </li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+            <br>
+            <h3>Information Doctor</h3>
+            <div class="dashboards">
+            <!-- <tr>Name : <input type="text-center"id ='nameOfDoctor'></tr> -->
+
+            </div>
+          </div>
+          <div class="tab-pane fade" id="healthRecord" role="tabpanel" aria-labelledby="healthRecord-tab">
+            <br>
+            <h3>Select Patient</h3>
+            <div class="get-healthRecord">
+                <select class="form-control">
+                    <option disabled="" selected="" value="disabled">Loading...</option>
+                </select>
+            </div>
+            <br>
+            <p>
+              <button class="btn btn-primary submit-get-healthRecord">Get Health Record</button> <br />
+            </p>
+            <div class="view-healthRecord">
+
+
+            </div>
+
+          </div>
+
+          <div class="tab-pane fade" id="transactions" role="tabpanel" aria-labelledby="transactions-tab">
+            <br>
+            <p>View transactions by transaction type </p>
+            <br>
+            <ul class="nav nav-tabs" id="transactionsTypeTab" role="tablist">
+              <li class="nav-item ">
+                <a class="nav-link active" id="points-allocated-tab" data-toggle="tab" href="#points-allocated" role="tab" aria-controls="points-allocated" aria-selected="true">Points Allocated</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" id="points-redeemed-tab" data-toggle="tab" href="#points-redeemed" role="tab" aria-controls="points-redeemed" aria-selected="false">Points Redeemed</a>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="points-allocated" role="tabpanel" aria-labelledby="points-allocated-tab">
+                <br>
+                <h4>Points Allocated Transactions</h4>
+                <br>
+                <div class="points-allocated-transactions"> </div>
+                <br><br>
+              </div>
+
+              <div class="tab-pane fade " id="points-redeemed" role="tabpanel" aria-labelledby="points-redeemed-tab">
+                <br>
+                <h4>Points Redeemed Transactions</h4>
+                <br>
+                <div class="points-redeemed-transactions"> </div>
+                <br><br>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container text-center">
+        <div class="loader" id="loader" style="display:none;"></div>
+      </div>
+
+    </div>
+
+
+</body>
+
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="/scripts/doctor.js"></script>

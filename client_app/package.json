@@ -1,0 +1,29 @@
+{
+  "name": "ehr",
+  "version": "0.0.1",
+  "description": "ehr blockchain",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha --recursive"
+  },
+  "author": "sannihith",
+  "email": "saiandrkco@gmail.com",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "body-parser": "^1.18.3",
+    "composer-admin": "^0.19.17",
+    "composer-cli": "^0.19.17",
+    "composer-client": "^0.19.17",
+    "composer-common": "^0.19.17",
+    "composer-connector-server": "^0.19.17",
+    "composer-connector-embedded": "^0.19.17",
+    "composer-playground": "^0.19.17",
+    "express": "^4.16.2",
+    "request": "^2.83.0"
+  },
+  "dependencies": {
+    "composer-connector-hlfv1": "^0.19.17",
+    "cookie-parser": "*",
+    "grpc": "^1.10.1"
+  }
+}

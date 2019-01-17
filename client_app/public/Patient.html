@@ -1,0 +1,305 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Health Use case Hyperledger</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body class="bg-light">
+
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <a class="navbar-brand" href="/home">Electronic Health Records on Blockchain</a>
+  </nav>
+
+  <div class="jumbotron" id="loginSection" style="display:block;">
+    <div class="container">
+      <table>
+        <h2>Patient Sign In</h2>
+        <br>
+        <div class="patient-id">
+          <tr>
+            <th>Enter Patients Blockchain ID: </th>
+            <th><input id="patient-id"></th>
+          </tr>
+        </div>
+        <div class="card-id">
+          <tr>
+            <th>Enter Patients username: </th>
+            <th><input id="card-id"></th>
+          </tr>
+        </div>
+        <div class="healthRecord-id" style="visibility: hidden;">
+          <input type="text-center" name="healthRecord-id">
+        </div>       
+      </table>
+      <button class="btn btn-primary sign-in-patient">SIGN IN</button>
+    </div>
+  </div>
+
+
+  <div id="transactionSection" style="display:none;">
+
+
+    <div class="jumbotron" id="headSection" style="display:block;">
+      <div class="container">
+        <table>
+          <tr>
+            <td>
+              <div style="padding-right: 20px">
+                <h2>name:</h2>
+                <h2>id:</h2>
+              </div>
+            </td>
+            <td>
+              <div class="heading"> </div>
+            </td>
+          </tr>
+        </table>
+        <!--div class="heading"> </div-->
+      </div>
+    </div>
+
+    <div class="container" >
+
+      <div class="row">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item tab-width">
+            <a class="nav-link active" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" aria-controls="earn" aria-selected="true">Dashboard</a>
+          </li>
+          <li class="nav-item tab-width">
+            <a class="nav-link " id="healthRecord-tab" data-toggle="tab" href="#healthRecord" role="tab" aria-controls="healthRecord" aria-selected="false">Health Record</a>
+          </li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+            <br>
+            <h3>Patient Information</h3>
+            <div class="dashboards">
+            </div>
+            <br>
+             <p>
+              <button class="btn btn-primary " data-toggle="modal" data-target="#updateInfo">Update Information </button> <br />
+            </p>
+          </div>
+                     <!-- Modal -->
+            <div id="updateInfo" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <table class="table table-hover">
+                    <tr>
+                      <th>First Name</th>
+                      <th><input type="text-center" id="update-firstname"></th>
+                    </tr>
+                    <tr>
+                      <th>Last Name</th>
+                      <th><input type="text-center" id="update-lastname"></th>
+                    </tr>
+                    <tr>
+                      <th>Email</th>
+                      <th><input type="text-center" id="update-email"></th>
+                    </tr>
+                    <tr>
+                      <th>Phone Number</th>
+                      <th><input type="text-center" id="update-phoneNumber"></th>
+                    </tr>
+                    <tr>
+                      <th>Address</th>
+                      <th><input type="text-center" id="update-address"></th>
+                    </tr>
+                  </table>
+                  <div class="modal-footer">
+                    <button type="button" id ="updateInfoclose" "class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary submit-update-inforPatient">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="tab-pane fade" id="healthRecord" role="tabpanel" aria-labelledby="healthRecord-tab">
+            <br>
+            <h3>Health Record Information</h3>
+            <div class="healthRecord">
+
+
+            </div>
+            <br>
+             <p>
+              <button class="btn btn-primary " data-toggle="modal" data-target="#myModal">Update Health Record </button> <br />
+            </p>
+            <p>Transaction </p>
+            <br>
+
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <table>
+                    <div class="update-temperature">
+                      <tr>
+                      <th>Body Temperature: </th>
+                      <th><input type="text-center" id="update-temperature"></th>
+                      </tr>
+                    </div>
+                    <div class="update-bloodPressure">
+                      <tr>
+                        <th><b>Blood Pressure: </b></th>
+                        <th><input type="text-center" id="update-bloodPressure"></th>
+                      </tr>
+
+                    </div>                     
+                  </table>
+
+                  <div>
+                  <form method="post" enctype="multipart/form-data">
+                    <input id="inputFileToLoad" type="file" name="myfile" onchange="encodeImageFileAsURL();" />
+                    <input type="hidden" name="enc_base" id="enc_base" value="val">
+                    <!-- <div id="imgTest"></div> -->
+                    <script type='text/javascript'>
+                      function encodeImageFileAsURL() {
+                        var filesSelected = document.getElementById("inputFileToLoad").files;
+                        if (filesSelected.length > 0) {
+                          var fileToLoad = filesSelected[0];
+                          var fileReader = new FileReader();
+                          fileReader.onload = function (fileLoadedEvent) {
+                          var srcData = fileLoadedEvent.target.result.split(',')[1]; // <--- data: base64
+                          //console.log(srcData);
+                           $("#enc_base").val(srcData);
+                          }
+                          fileReader.readAsDataURL(fileToLoad);
+                        }
+                      }
+                    </script>
+                  </form>
+                </div>                 
+                  <div class="modal-footer">
+                    <button type="button" id ="myModalclose" "class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary submit-update-healthRecord">Save changes</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <ul class="nav nav-tabs" id="transactionsTypeTab" role="tablist">
+              <li class="nav-item ">
+                <a class="nav-link active" id="transactions-doctor-tab" data-toggle="tab" href="#transactions-doctor" role="tab" aria-controls="transactions-doctor" aria-selected="true">Doctor</a>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="transactions-doctor" role="tabpanel" aria-labelledby="transactions-doctor-tab">
+                <br>
+                <h4>Grant HealthRecord Access to Doctor</h4>
+                <br>
+                <div class="grantAccess-doctor"> 
+                  <select class="form-control">
+                    <option disabled="" selected="" value="disabled">Loading...</option>
+                    </select>
+                </div>
+                <div class="view-infor-doctor"></div>
+                <br>
+            <p>
+              <button class="btn btn-primary submit-grant-doctor">Grant Access to Doctor </button> <br />
+              <button class="btn btn-primary submit-view-doctor">View Doctor Information</button> <br />
+            </p>
+                <br>
+                <h4>Revoke Access HealthRecord for Doctor</h4>
+                <br>
+                <div class="revokeAccess-doctor"> 
+                  <select class="form-control">
+                    <option disabled="" selected="" value="disabled">Loading...</option>
+                    </select>
+                </div>
+                <br>
+            <p>
+              <button class="btn btn-primary submit-revoke-doctor">Revoke Doctor </button> <br />
+            </p>
+              </div>
+
+              <div class="tab-pane fade " id="transactions-lab" role="tabpanel" aria-labelledby="transactions-lab-tab">
+                <br>
+                <h4>Grant Access HealthRecord for Lab</h4>
+                <br>
+                <div class="grantAccess-lab"> </div>
+                <br><br>
+                <h4>Revoke Access HealthRecord for Lab</h4>
+                <br>
+                <div class="revokeAccess-lab"> </div>
+
+              </div>
+            <!-- <br>
+            <div>
+              <h4>------------------------------------------------------------------</h4>
+              <h3><b> Grant Access Health Record for Doctor</b></h3>
+            </div> -->
+          </div>
+        </div>
+
+          <div class="tab-pane fade" id="transactions" role="tabpanel" aria-labelledby="transactions-tab">
+            <br>
+            <p>View transactions by transaction type </p>
+            <br>
+            <ul class="nav nav-tabs" id="transactionsTypeTab" role="tablist">
+              <li class="nav-item ">
+                <a class="nav-link active" id="points-allocated-tab" data-toggle="tab" href="#points-allocated" role="tab" aria-controls="points-allocated" aria-selected="true">Points Allocated</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" id="points-redeemed-tab" data-toggle="tab" href="#points-redeemed" role="tab" aria-controls="points-redeemed" aria-selected="false">Points Redeemed</a>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="points-allocated" role="tabpanel" aria-labelledby="points-allocated-tab">
+                <br>
+                <h4>Points Allocated Transactions</h4>
+                <br>
+                <div class="points-allocated-transactions"> </div>
+                <br><br>
+              </div>
+
+              <div class="tab-pane fade " id="points-redeemed" role="tabpanel" aria-labelledby="points-redeemed-tab">
+                <br>
+                <h4>Points Redeemed Transactions</h4>
+                <br>
+                <div class="points-redeemed-transactions"> </div>
+                <br><br>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container text-center">
+        <div class="loader" id="loader" style="display:none;"></div>
+      </div>
+
+    </div>
+
+
+</body>
+
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="/scripts/patient.js"></script>
